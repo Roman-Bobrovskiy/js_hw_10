@@ -48,6 +48,7 @@ class Timer {
       if (distance < 0) {
         clearInterval(this.promotonTimerId);
         this.promotonTimerId = null;
+        this.cleanTimer();
         this.p.innerHTML = "Time is over";
       }
     }, 1000);
