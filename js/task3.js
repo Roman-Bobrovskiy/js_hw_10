@@ -9,6 +9,7 @@ class Timer {
     this.input = document.querySelector("#startDate");
     this.init();
     this.promotonTimerId = null;
+    this.show();
   }
   init() {
     console.log("init()");
@@ -26,17 +27,14 @@ class Timer {
     this.promotonTimerId = setInterval(() => {
       let dateNow = Date.now();
       let distance = promotionTimer - dateNow;
-      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      let hours = Math.floor(
+      this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      this.day.innerHTML = days;
-      this.hour.innerHTML = hours;
-      this.min.innerHTML = minutes;
-      this.sec.innerHTML = seconds;
+      this.show();
 
       if (distance < 0) {
         clearInterval(this.promotonTimerId);
@@ -44,6 +42,12 @@ class Timer {
         this.p.innerHTML = "Time is over";
       }
     }, 1000);
+  }
+  show() {
+    this.day.innerHTML = this.days;
+    this.hour.innerHTML = this.thours;
+    this.min.innerHTML = this.minutes;
+    this.sec.innerHTML = this.seconds;
   }
 }
 
