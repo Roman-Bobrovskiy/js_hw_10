@@ -37,6 +37,7 @@ class Timer {
       this.hour.innerHTML = hours;
       this.min.innerHTML = minutes;
       this.sec.innerHTML = seconds;
+
       if (distance < 0) {
         clearInterval(this.promotonTimerId);
         this.promotonTimerId = null;
