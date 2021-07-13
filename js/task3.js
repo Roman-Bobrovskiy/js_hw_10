@@ -10,23 +10,32 @@ class Timer {
     this.init();
     this.promotonTimerId = null;
     this.show();
+    this.cleanTimer();
   }
   init() {
-    console.log("init()");
+    // console.log("init()");
     this.input.addEventListener("input", this.sTime.bind(this));
   }
 
+  cleanTimer() {
+    this.day.innerHTML = "";
+    this.hour.innerHTML = "";
+    this.min.innerHTML = "";
+    this.sec.innerHTML = "";
+  }
+
   sTime() {
-    console.log("sTime()", this.input);
+    // console.log("sTime()", this.input);
     if (this.promotonTimerId !== null) {
       clearInterval(this.promotonTimerId);
       this.promotonTimerId = null;
     }
     let promotionTimer = new Date(this.input.value);
-    console.log(promotionTimer);
+    // console.log(promotionTimer);
     this.promotonTimerId = setInterval(() => {
       let dateNow = Date.now();
       let distance = promotionTimer - dateNow;
+      this.cleanTimer();
       this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
       this.hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -45,7 +54,7 @@ class Timer {
   }
   show() {
     this.day.innerHTML = this.days;
-    this.hour.innerHTML = this.thours;
+    this.hour.innerHTML = this.hours;
     this.min.innerHTML = this.minutes;
     this.sec.innerHTML = this.seconds;
   }
